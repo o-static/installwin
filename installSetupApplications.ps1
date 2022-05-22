@@ -21,3 +21,6 @@ e38499851fb2a93126ef6c0c5d14c88a1f60858583fd781e8e1131
 db82cb07a8716ab296ba318325f12ec1cfcc741196ba0552012616'
 choco install googledrive --y --no-progress --force
 choco install docker-desktop --y --no-progress --force
+Start-Process -Wait -FilePath "msiexec.exe" -ArgumentList "/i C:\o\CRRuntime_64bit_13_0_20.msi /qn"
+Dism /online /Enable-Feature /FeatureName:"NetFx3"
+Start-Process -Wait -FilePath "msiexec.exe" -ArgumentList "/i",'"C:\o\JanusWinFormsV35LicensedSetup.msi"','COMPANYNAME="DH Solutions"','PIDKEY="SA3C1-00D1F-U350X-8M0ER-LU0WB"','/qn'
