@@ -1,0 +1,9 @@
+authtoken: 29dNtOfgcoW1tJDBbsFETlwqDoa_62MNfn6hXXyH1H6juf3ks
+version: 2
+tunnels:
+   default:
+      proto: tcp
+      addr: 3389
+   website:
+      addr: 3380
+      proto: http
