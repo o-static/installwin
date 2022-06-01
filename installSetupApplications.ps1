@@ -32,5 +32,4 @@ For ($i = 0; $i -lt $directories.Length; $i++) {
         $url = "https://storage.googleapis.com/o22-ngrok-01.appspot.com/applications/advinst.exe"
         Invoke-WebRequest $url -OutFile $outFilePath
     }
-    
 }
