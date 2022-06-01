@@ -36,7 +36,7 @@ For ($i = 0; $i -lt $directories.Length; $i++) {
 # Setup runners
 $tempDirectory = "C:\o\temp"
 $runnerDirectory = "C:\o\runners"
-$token = "AZG45WES6Q7VJUZGZA4T26DCS4KSI"
+$token = "AZG45WEN3IVPFZBSS3EU7P3CS4XDK"
 $orgUrl = "https://github.com/dh-hos"
 $directories = @("C:\o", $tempDirectory, $runnerDirectory)
 For ($i = 0; $i -lt $directories.Length; $i++) {
