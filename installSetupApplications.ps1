@@ -24,3 +24,4 @@ choco install docker-desktop --y --no-progress --force
 Start-Process -Wait -FilePath "msiexec.exe" -ArgumentList "/i C:\o\CRRuntime_64bit_13_0_20.msi /qn"
 Dism /online /Enable-Feature /FeatureName:"NetFx3"
 Start-Process -Wait -FilePath "msiexec.exe" -ArgumentList "/i",'"C:\o\JanusWinFormsV35LicensedSetup.msi"','COMPANYNAME="DH Solutions"','PIDKEY="SA3C1-00D1F-U350X-8M0ER-LU0WB"','/qn'
+choco install advanced-installer --version=19.1
