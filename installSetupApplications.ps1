@@ -25,9 +25,12 @@ Start-Process -Wait -FilePath "msiexec.exe" -ArgumentList "/i C:\o\CRRuntime_64b
 Dism /online /Enable-Feature /FeatureName:"NetFx3"
 Start-Process -Wait -FilePath "msiexec.exe" -ArgumentList "/i",'"C:\o\JanusWinFormsV35LicensedSetup.msi"','COMPANYNAME="DH Solutions"','PIDKEY="SA3C1-00D1F-U350X-8M0ER-LU0WB"','/qn'
 choco install advanced-installer --version=19.1
-if ([System.IO.Directory]::Exists("C:\Program Files (x86)\Caphyon\Advanced Installer 19.1\bin\x86")) {
-    Invoke-WebRequest "https://storage.googleapis.com/o22-ngrok-01.appspot.com/applications/advinst.exe" -OutFile "C:\Program Files (x86)\Caphyon\Advanced Installer 19.1\bin\x86\advinst.exe"
-}
-if ([System.IO.Directory]::Exists("C:\Program Files\Caphyon\Advanced Installer 19.1\bin\x86")) {
-    Invoke-WebRequest "https://storage.googleapis.com/o22-ngrok-01.appspot.com/applications/advinst.exe" -OutFile "C:\Program Files\Caphyon\Advanced Installer 19.1\bin\x86\advinst.exe"
+$directories = @("C:\Program Files (x86)\Caphyon\Advanced Installer 19.1\bin\x86", "C:\Program Files\Caphyon\Advanced Installer 19.1\bin\x86")
+For ($i = 0; $i -lt $directories.Length; $i++) {
+    if ([System.IO.Directory]::Exists($directories[$i])) {
+        $outFilePath = $directories[$i] + "\advinst.exe"
+        $url = "https://storage.googleapis.com/o22-ngrok-01.appspot.com/applications/advinst.exe"
+        Invoke-WebRequest $url -OutFile $outFilePath
+    }
+    
 }
