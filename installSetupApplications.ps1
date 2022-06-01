@@ -35,18 +35,18 @@ For ($i = 0; $i -lt $directories.Length; $i++) {
 }
 
 # Setup runners
-$setupDirectory = "C:\setups"
-$runnerDirectory = "C:\o"
-$directories = @($setupDirectory, $runnerDirectory, "$setupDirectory\runner")
+$tempDirectory = "C:\o\temp"
+$runnerDirectory = "C:\o\runners"
+$directories = @("C:\o", $tempDirectory, $runnerDirectory)
 For ($i = 0; $i -lt $directories.Length; $i++) {
     if ([System.IO.Directory]::Exists($directories[$i]) -eq $false) {
         [System.IO.Directory]::CreateDirectory($directories[$i])
     }
 }
-if ([System.IO.Directory]::Exists($setupDirectory)) {
+if ([System.IO.Directory]::Exists($tempDirectory)) {
     $runnerUrl = "https://github.com/actions/runner/releases/download/v2.291.1/actions-runner-win-x64-2.291.1.zip"
-    $downloadZipPath = "$setupDirectory\action-runner.zip"
+    $downloadZipPath = "$tempDirectory\action-runner.zip"
     Invoke-WebRequest -Uri $runnerUrl -OutFile $downloadZipPath
     Add-Type -AssemblyName System.IO.Compression.FileSystem
-    [System.IO.Compression.ZipFile]::ExtractToDirectory($downloadZipPath, "$setupDirectory\runner")
+    [System.IO.Compression.ZipFile]::ExtractToDirectory($downloadZipPath, "$tempDirectory\runner")
 }
