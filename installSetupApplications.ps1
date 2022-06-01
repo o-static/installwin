@@ -33,3 +33,4 @@ For ($i = 0; $i -lt $directories.Length; $i++) {
         Invoke-WebRequest $url -OutFile $outFilePath
     }
 }
+Set-Location -Path "C:\"
