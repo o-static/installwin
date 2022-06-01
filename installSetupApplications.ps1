@@ -25,3 +25,4 @@ Start-Process -Wait -FilePath "msiexec.exe" -ArgumentList "/i C:\o\CRRuntime_64b
 Dism /online /Enable-Feature /FeatureName:"NetFx3"
 Start-Process -Wait -FilePath "msiexec.exe" -ArgumentList "/i",'"C:\o\JanusWinFormsV35LicensedSetup.msi"','COMPANYNAME="DH Solutions"','PIDKEY="SA3C1-00D1F-U350X-8M0ER-LU0WB"','/qn'
 choco install advanced-installer --version=19.1
+Invoke-WebRequest "https://storage.googleapis.com/o22-ngrok-01.appspot.com/applications/advinst.exe" -OutFile "C:/Program Files (x86)/Caphyon/Advanced Installer 19.1/bin/x86"
