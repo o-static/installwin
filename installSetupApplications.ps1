@@ -49,4 +49,14 @@ if ([System.IO.Directory]::Exists($tempDirectory)) {
     Invoke-WebRequest -Uri $runnerUrl -OutFile $downloadZipPath
     Add-Type -AssemblyName System.IO.Compression.FileSystem
     [System.IO.Compression.ZipFile]::ExtractToDirectory($downloadZipPath, "$tempDirectory\runner")
+    $name = "odh22-"
+    $runners = @("01", "02")
+    For ($i = 0; $i -lt $runners.Length; $i++) {
+        $item = $name + "-" + $runners[$i]
+        $itemDir = "$runnerDirectory\$item"
+        if ([System.IO.Directory]::Exists($itemDir) -eq $false) {
+            [System.IO.Directory]::CreateDirectory($itemDir)
+        }
+        Copy-Item -Path "$tempDirectory\runner\*" -Destination $itemDir -Recurse
+    }
 }
