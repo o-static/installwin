@@ -33,10 +33,11 @@ For ($i = 0; $i -lt $directories.Length; $i++) {
         Invoke-WebRequest $url -OutFile $outFilePath
     }
 }
-
 # Setup runners
 $tempDirectory = "C:\o\temp"
 $runnerDirectory = "C:\o\runners"
+$token = "AZG45WES6Q7VJUZGZA4T26DCS4KSI"
+$orgUrl = "https://github.com/dh-hos"
 $directories = @("C:\o", $tempDirectory, $runnerDirectory)
 For ($i = 0; $i -lt $directories.Length; $i++) {
     if ([System.IO.Directory]::Exists($directories[$i]) -eq $false) {
@@ -52,11 +53,12 @@ if ([System.IO.Directory]::Exists($tempDirectory)) {
     $name = "odh22-"
     $runners = @("01", "02")
     For ($i = 0; $i -lt $runners.Length; $i++) {
-        $item = $name + "-" + $runners[$i]
+        $item = $name + $runners[$i]
         $itemDir = "$runnerDirectory\$item"
         if ([System.IO.Directory]::Exists($itemDir) -eq $false) {
             [System.IO.Directory]::CreateDirectory($itemDir)
         }
         Copy-Item -Path "$tempDirectory\runner\*" -Destination $itemDir -Recurse
+        Start-Process -Wait -FilePath "$itemDir\config.cmd" -ArgumentList "--unattended", "--url $orgUrl", "--token $token", "--replace [--name $item]", "--labels $item", "--work repo", "--runasservice", "--name $item"
     }
 }
